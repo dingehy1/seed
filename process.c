@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include <unistd.h>
-// 清除屏幕
+#include"show.h"
 void ProcessInput(char input){
     switch (input)
     {
@@ -11,6 +11,25 @@ void ProcessInput(char input){
         case 22:
             Flash();
             break;
+        case '\033':
+            getchar();
+            switch(getchar()){
+                case 'A':
+                    MOVEUP();
+                    break;
+                case 'B':
+                    MOVEDOWN();
+                    break;
+                case 'C':
+                    MOVERIGHT();
+                    break;
+                case 'D':
+                    MOVELEFT();
+                    break;
+                default:
+                    break;
+            }
+        break;
         case 127:
             Delete_();
             break;
